@@ -1,10 +1,11 @@
 resources:
 - name: src
   type: git
-  check_every: 5m
+  check_every: 1m
   source:
     uri: https://github.com/jprelph/docker-stub.git
     branch: main
+    paths: [config.yaml]
 jobs:
 - name: echo
   plan:
@@ -18,6 +19,8 @@ jobs:
           type: registry-image
           source:
             repository: busybox
+        inputs:
+        - name: src
         run:
           path: /bin/sh
           args:
