@@ -1,0 +1,26 @@
+resources:
+- name: src
+  type: git
+  check_every: 5m
+  source:
+    uri: https://github.com/jprelph/docker-stub.git
+    branch: main
+jobs:
+- name: echo
+  plan:
+    - get: src
+      trigger: true
+    - task: echo
+      privileged: true
+      config:
+        platform: linux
+        image_resource:
+          type: registry-image
+          source:
+            repository: busybox
+        run:
+          path: /bin/sh
+          args:
+            - -exc
+            - |
+              cat src/config.yaml
