@@ -3,7 +3,7 @@ resources:
   type: git
   check_every: 1m
   source:
-    uri: https://github.com/jprelph/docker-stub.git
+    uri: https://github.com/ruwanthiranagama/docker-stub.git
     branch: main
     paths: [config.yaml]
 jobs:
